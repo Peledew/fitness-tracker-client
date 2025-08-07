@@ -5,12 +5,13 @@ import { TokenDto } from '../models/tokenDto';
 import { Observable, Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UserStoreService } from './user-store.service';
+import { environment } from '../../../enviroments/enviroment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl: string = 'https://localhost:7187/api/';
+  private baseUrl: string = `${environment.apiUrl}`;
   private userPayload: any;
 
   private resetFormSubject = new Subject<void>();
@@ -29,12 +30,12 @@ export class AuthService {
   }
 
   signUp(userObj: any) {
-    return this.http.post<any>(`${this.baseUrl}register`, userObj);
+    return this.http.post<any>(`${this.baseUrl}/register`, userObj);
   }
 
   login(loginObj: any): Observable<TokenDto> {
     this.triggerFormReset();
-    return this.http.post<any>(`${this.baseUrl}login`, loginObj);
+    return this.http.post<any>(`${this.baseUrl}/login`, loginObj);
   }
 
   storeToken(tokenValue: string) {

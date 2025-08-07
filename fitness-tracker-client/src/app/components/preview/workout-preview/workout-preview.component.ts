@@ -80,13 +80,11 @@ export class WorkoutPreviewComponent implements OnInit {
   }
 
   processData(): void {
-    if (this.isEditMode) this.update();
-    else this.add();
+    if (this.workoutForm.invalid) return;
+    this.isEditMode ? this.update() : this.add();
   }
 
   update(): void {
-    if (this.workoutForm.invalid) return;
-
     const formData = this.workoutForm.value;
     const updatedWorkout: WriteWorkoutDto = {
       id: this.id,
@@ -107,9 +105,6 @@ export class WorkoutPreviewComponent implements OnInit {
   }
 
   add(): void {
-    console.log(this.workoutForm.value);
-    if (this.workoutForm.invalid) return;
-
     const formData = this.workoutForm.value;
     this.workoutService.add(formData).subscribe({
       next: () => this.router.navigate(['workoutsManagment']),

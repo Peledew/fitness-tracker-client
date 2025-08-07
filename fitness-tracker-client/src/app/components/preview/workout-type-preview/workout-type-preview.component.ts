@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { WorkoutTypeDto } from '../../../core/models/workout-typeDto';
@@ -25,8 +25,8 @@ export class WorkoutTypePreviewComponent implements OnInit {
 
   ngOnInit(): void {
     this.workoutTypeForm = this.fb.group({
-      name: [''],
-      description: [''],
+      name: ['', Validators.required],
+      description: ['', Validators.required],
     });
     this.id = +this.route.snapshot.paramMap.get('id')!;
     this.isEditMode = !!this.id;
@@ -43,13 +43,11 @@ export class WorkoutTypePreviewComponent implements OnInit {
   }
 
   processData(): void {
-    if (this.isEditMode) this.update();
-    else this.add();
+    if (this.workoutTypeForm.invalid) return;
+    this.isEditMode ? this.update() : this.add();
   }
 
   update(): void {
-    if (this.workoutTypeForm.invalid) return;
-
     const formData = this.workoutTypeForm.value;
     const updatedWorkoutType: WorkoutTypeDto = {
       id: this.id,
@@ -64,8 +62,6 @@ export class WorkoutTypePreviewComponent implements OnInit {
   }
 
   add(): void {
-    if (this.workoutTypeForm.invalid) return;
-
     const formData = this.workoutTypeForm.value;
     this.workoutTypeService.add(formData).subscribe({
       next: () => this.router.navigate(['workoutTypesManagment']),

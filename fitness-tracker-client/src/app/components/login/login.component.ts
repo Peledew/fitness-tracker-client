@@ -29,7 +29,6 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    // Subscribe to resetForm$ observable
     this.authService.resetForm$.subscribe(() => {
       this.loginForm.reset();
     });
@@ -60,7 +59,7 @@ export class LoginComponent implements OnInit {
         },
       });
     } else {
-      console.log('Login failed');
+      alert('Login failed');
     }
   }
 }

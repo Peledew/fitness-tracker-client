@@ -1,19 +1,26 @@
 <div class="row">
-  <div class="col s12 m6 l6">
-    <p>Name:</p>
-  </div>
-
-  <div class="col s12 m6 l6">
-    <p>Description:</p>
+  <div class="col s12">
+    <h1>Workout Types Management</h1>
   </div>
 </div>
 
-<div class="row workout-types-list" *ngFor="let workoutType of workouTypes">
-  <div class="col s12 m6 l6">
+<div class="row">
+  <div class="col s12 left-align">
+    <a class="waves-effect waves-light btn green darken-4" (click)="onAdd()">
+      <i class="material-icons left">add</i>Add New
+    </a>
+  </div>
+</div>
+<div class="row workout-types-list" *ngFor="let workoutType of workoutTypes">
+  <div class="col s12 m4">
     <p>{{ workoutType.name }}</p>
   </div>
-
-  <div class="col s12 m6 l6">
-    <p>{{ workoutType.description }}</p>
+  <div class="col s12 m8 right-align">
+    <a class="waves-effect waves-light separate-button blue btn" (click)="onPreview(workoutType.id)">
+      <i class="material-icons left">visibility</i>Preview
+    </a>
+    <a class="waves-effect waves-light red btn" (click)="onDelete(workoutType.id)">
+      <i class="material-icons left">delete</i>Delete
+    </a>
   </div>
 </div>

@@ -5,7 +5,6 @@ import { ReadWorkoutDto } from '../../../core/models/readWorkoutDto';
 import { UserDto } from '../../../core/models/userDto';
 import { WorkoutTypeDto } from '../../../core/models/workout-typeDto';
 import { WorkoutTypeService } from '../../../core/services/workout-type.service';
-import { UserService } from '../../../core/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { WorkoutService } from '../../../core/services/workout.service';
@@ -29,7 +28,6 @@ export class WorkoutPreviewComponent implements OnInit {
     private fb: FormBuilder,
     private workoutService: WorkoutService,
     private workoutTypeService: WorkoutTypeService,
-    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private userStore: UserStoreService,
@@ -113,7 +111,7 @@ export class WorkoutPreviewComponent implements OnInit {
     if (this.workoutForm.invalid) return;
 
     const formData = this.workoutForm.value;
-    this.workoutTypeService.add(formData).subscribe({
+    this.workoutService.add(formData).subscribe({
       next: () => this.router.navigate(['workoutsManagment']),
       error: (err) => console.error('Creation failed:', err),
     });

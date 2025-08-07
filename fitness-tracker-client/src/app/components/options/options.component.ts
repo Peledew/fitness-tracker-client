@@ -13,6 +13,7 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class OptionsComponent implements OnInit {
   public role!: string;
+
   constructor(
     private router: Router,
     private userStore: UserStoreService,
@@ -20,6 +21,10 @@ export class OptionsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getRole();
+  }
+
+  getRole(): void {
     this.userStore.getRoleFromStore().subscribe((val) => {
       const roleFromToken = this.authService.getRoleFromToken();
       this.role = val || roleFromToken;

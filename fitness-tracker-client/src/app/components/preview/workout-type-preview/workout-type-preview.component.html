@@ -10,16 +10,13 @@
         <input formControlName="name" id="name" type="text" />
         <label for="name" class="active">Name</label>
       </div>
-
       <div class="input-field">
         <textarea formControlName="description" id="description" class="materialize-textarea"></textarea>
         <label for="description" class="active">Description</label>
       </div>
-
       <button *ngIf="!isEditMode" type="submit" class="btn waves-effect waves-light green darken-4">
         <i class="material-icons right">library_add</i>Add
       </button>
-
       <button *ngIf="isEditMode" type="submit" class="btn waves-effect waves-light green lighten-1">
         <i class="material-icons right">update</i>Update
       </button>

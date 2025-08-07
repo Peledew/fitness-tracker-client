@@ -51,7 +51,6 @@ export class WorkoutTypePreviewComponent implements OnInit {
     if (this.workoutTypeForm.invalid) return;
 
     const formData = this.workoutTypeForm.value;
-
     const updatedWorkoutType: WorkoutTypeDto = {
       id: this.id,
       name: formData.name,
@@ -68,7 +67,6 @@ export class WorkoutTypePreviewComponent implements OnInit {
     if (this.workoutTypeForm.invalid) return;
 
     const formData = this.workoutTypeForm.value;
-
     this.workoutTypeService.add(formData).subscribe({
       next: () => this.router.navigate(['workoutTypesManagment']),
       error: (err) => console.error('Creation failed:', err),

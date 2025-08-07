@@ -5,7 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class UserStoreService {
-  private fullName$ = new BehaviorSubject<string>('');
+  private username$ = new BehaviorSubject<string>('');
   private role$ = new BehaviorSubject<string>('');
 
   private isLoggedIn$ = new BehaviorSubject<boolean>(this.getLoginStatusFromStorage());
@@ -33,11 +33,11 @@ export class UserStoreService {
     this.role$.next(role);
   }
 
-  public getFullNameFromStore() {
-    return this.fullName$.asObservable();
+  public getUsernameFromStore() {
+    return this.username$.asObservable();
   }
 
-  public setFullNameForStore(fullname: string) {
-    this.fullName$.next(fullname);
+  public setUsernameForStore(fullname: string) {
+    this.username$.next(fullname);
   }
 }

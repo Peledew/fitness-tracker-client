@@ -15,8 +15,8 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = 'Fitness Tracker';
-
   public isLoggedIn: boolean = false;
+
   constructor(
     private authService: AuthService,
     private userStore: UserStoreService,

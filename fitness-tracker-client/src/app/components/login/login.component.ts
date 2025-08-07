@@ -29,11 +29,14 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
+    this.resetForm();
+  }
+
+  resetForm(): void {
     this.authService.resetForm$.subscribe(() => {
       this.loginForm.reset();
     });
   }
-
   navigateToSignUp() {
     this.router.navigate(['signup']);
   }
@@ -48,7 +51,7 @@ export class LoginComponent implements OnInit {
           this.authService.storeToken(res.accessToken);
 
           const tokenPayload = this.authService.decodedToken();
-          this.userStore.setFullNameForStore(tokenPayload.unique_name);
+          this.userStore.setUsernameForStore(tokenPayload.unique_name);
           this.userStore.setRoleForStore(tokenPayload.role);
 
           this.userStore.setIsLoggedIn(true);

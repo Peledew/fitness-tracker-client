@@ -1,1 +1,19 @@
-<p>workout-types-management works!</p>
+<div class="row">
+  <div class="col s12 m6 l6">
+    <p>Name:</p>
+  </div>
+
+  <div class="col s12 m6 l6">
+    <p>Description:</p>
+  </div>
+</div>
+
+<div class="row workout-types-list" *ngFor="let workoutType of workouTypes">
+  <div class="col s12 m6 l6">
+    <p>{{ workoutType.name }}</p>
+  </div>
+
+  <div class="col s12 m6 l6">
+    <p>{{ workoutType.description }}</p>
+  </div>
+</div>

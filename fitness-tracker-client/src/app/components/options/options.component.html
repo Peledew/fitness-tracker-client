@@ -1,1 +1,11 @@
-<p>options works!</p>
+<div class="vertical-navbar">
+  <ul>
+    <li (click)="navigateTo('dashboard')"><a>Dashboard</a></li>
+    <ng-container *ngIf="role === 'Admin'">
+      <li (click)="navigateTo('userManagment')"><a>Manage users</a></li>
+      <li (click)="navigateTo('workoutTypesManagment')"><a>Manage workout types</a></li>
+    </ng-container>
+
+    <li (click)="navigateTo('workoutsManagment')"><a>Manage workous</a></li>
+  </ul>
+</div>

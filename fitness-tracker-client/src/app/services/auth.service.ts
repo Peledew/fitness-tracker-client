@@ -63,7 +63,7 @@ export class AuthService {
     return jwtHelper.decodeToken(token);
   }
 
-  getfullNameFromToken() {
+  getUsernameFromToken() {
     if (this.userPayload) return this.userPayload.unique_name;
   }
 

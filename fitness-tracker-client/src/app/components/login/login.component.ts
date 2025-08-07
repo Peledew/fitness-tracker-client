@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
-import { TokenDto } from '../../models/tokenDto';
-import { UserStoreService } from '../../services/user-store.service';
+import { TokenDto } from '../../core/models/tokenDto';
+import { UserStoreService } from '../../core/services/user-store.service';
 
 @Component({
   selector: 'app-login',
@@ -29,12 +29,14 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    // Subscribe to resetForm$ observable
+    this.resetForm();
+  }
+
+  resetForm(): void {
     this.authService.resetForm$.subscribe(() => {
       this.loginForm.reset();
     });
   }
-
   navigateToSignUp() {
     this.router.navigate(['signup']);
   }
@@ -49,8 +51,9 @@ export class LoginComponent implements OnInit {
           this.authService.storeToken(res.accessToken);
 
           const tokenPayload = this.authService.decodedToken();
-          this.userStore.setFullNameForStore(tokenPayload.unique_name);
+          this.userStore.setUsernameForStore(tokenPayload.unique_name);
           this.userStore.setRoleForStore(tokenPayload.role);
+          this.userStore.setUserIdForStore(tokenPayload.nameid);
 
           this.userStore.setIsLoggedIn(true);
           this.router.navigate(['dashboard']);
@@ -60,7 +63,7 @@ export class LoginComponent implements OnInit {
         },
       });
     } else {
-      console.log('Login failed');
+      alert('Login failed');
     }
   }
 }

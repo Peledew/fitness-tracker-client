@@ -1,5 +1,5 @@
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../core/services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -30,32 +30,22 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
-    if (this.signUpForm.valid) {
-      console.log('Form Submitted', this.signUpForm.value);
-    } else {
-      console.log('Form is invalid');
-    }
-  }
-
   navigateToLogIn() {
     this.router.navigate(['login']);
   }
 
   onSignUp() {
     if (this.signUpForm.valid) {
-      console.log('Signed Up!!', this.signUpForm.value);
-
       this.auth.signUp(this.signUpForm.value).subscribe({
         next: (res) => {
-          this.router.navigate(['login']);
+          this.navigateToLogIn();
         },
         error: (err) => {
-          console.log(err?.error.message);
+          alert(err?.error.message);
         },
       });
     } else {
-      console.log('Sign Up Failed');
+      alert('Sign Up Failed');
     }
   }
 }

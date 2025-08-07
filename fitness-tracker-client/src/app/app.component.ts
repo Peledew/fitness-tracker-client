@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { OptionsComponent } from './components/options/options.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AuthService } from './services/auth.service';
-import { UserStoreService } from './services/user-store.service';
+import { UserStoreService } from './core/services/user-store.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -15,12 +14,9 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   title = 'Fitness Tracker';
-
   public isLoggedIn: boolean = false;
-  constructor(
-    private authService: AuthService,
-    private userStore: UserStoreService,
-  ) {}
+
+  constructor(private userStore: UserStoreService) {}
 
   ngOnInit(): void {
     this.userStore.getIsLoggedIn().subscribe((status) => {

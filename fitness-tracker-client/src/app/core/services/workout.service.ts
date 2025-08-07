@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BaseService } from './abstract/base.service';
-import { UserDto } from '../models/userDto';
+import { WorkoutDto } from '../models/workoutDto';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService extends BaseService<UserDto> {
+export class WorkoutService extends BaseService<WorkoutDto> {
   constructor(http: HttpClient) {
-    super(http, 'users');
+    super(http, 'workouts');
   }
 }

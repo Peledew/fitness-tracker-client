@@ -29,4 +29,8 @@ export class OptionsComponent implements OnInit {
   navigateTo(route: string): void {
     this.router.navigate([route]);
   }
+
+  signOut() {
+    this.authService.signOut();
+  }
 }

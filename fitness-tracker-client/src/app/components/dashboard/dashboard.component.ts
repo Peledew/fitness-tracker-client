@@ -25,8 +25,4 @@ export class DashboardComponent implements OnInit {
       this.username = val || username;
     });
   }
-
-  signOut() {
-    this.authService.signOut();
-  }
 }

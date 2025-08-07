@@ -1,12 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { OptionsComponent } from './components/options/options.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AuthService } from './services/auth.service';
+import { UserStoreService } from './services/user-store.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [RouterOutlet, OptionsComponent, HeaderComponent, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
-export class AppComponent {
-  title = 'fitness-tracker-client';
+export class AppComponent implements OnInit {
+  title = 'Fitness Tracker';
+
+  public isLoggedIn: boolean = false;
+  constructor(
+    private authService: AuthService,
+    private userStore: UserStoreService,
+  ) {}
+
+  ngOnInit(): void {
+    this.userStore.getIsLoggedIn().subscribe((status) => {
+      this.isLoggedIn = status;
+    });
+  }
 }

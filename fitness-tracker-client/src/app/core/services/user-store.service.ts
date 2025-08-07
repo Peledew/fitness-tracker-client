@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserStoreService {
   private username$ = new BehaviorSubject<string>('');
   private role$ = new BehaviorSubject<string>('');
+  private userId$ = new BehaviorSubject<number>(this.getUserIdFromStore());
 
   private isLoggedIn$ = new BehaviorSubject<boolean>(this.getLoginStatusFromStorage());
   constructor() {}
@@ -39,5 +40,15 @@ export class UserStoreService {
 
   public setUsernameForStore(fullname: string) {
     this.username$.next(fullname);
+  }
+
+  public setUserIdForStore(id: number) {
+    this.userId$.next(id);
+    localStorage.setItem('userId', id.toString());
+  }
+
+  public getUserIdFromStore(): number {
+    const stored = localStorage.getItem('userId');
+    return stored ? Number(stored) : 0; // Default 0 if not found
   }
 }

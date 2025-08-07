@@ -59,7 +59,7 @@ export class AuthService {
   decodedToken() {
     const jwtHelper = new JwtHelperService();
     const token = this.getToken()!;
-    //console.log(jwtHelper.decodeToken(token))
+
     return jwtHelper.decodeToken(token);
   }
 
@@ -69,6 +69,11 @@ export class AuthService {
 
   getRoleFromToken() {
     if (this.userPayload) return this.userPayload.role;
+  }
+
+  getUserIdFromToken(): number | null {
+    if (!this.userPayload) return null;
+    return this.userPayload.nameid ? +this.userPayload.nameid : null;
   }
 
   public setIsLoggedIn(status: boolean): void {

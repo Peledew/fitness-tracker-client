@@ -1,1 +1,42 @@
-<p>workouts-management works!</p>
+<div class="row">
+  <div class="col s12">
+    <h1>Workout Types Management</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12 left-align">
+    <a class="waves-effect waves-light btn green darken-4" (click)="onAdd()">
+      <i class="material-icons left">add</i>Add New
+    </a>
+  </div>
+</div>
+<div class="row">
+  <div class="col s12 m3">
+    <p><b>Type</b></p>
+  </div>
+  <div class="col s12 m3">
+    <p><b>Date</b></p>
+  </div>
+  <div class="col s12 m3">
+    <p><b>Duration</b></p>
+  </div>
+</div>
+<div class="row workout-types-list" *ngFor="let workout of workouts">
+  <div class="col s12 m3">
+    <p>{{ workout.type.name }}</p>
+  </div>
+  <div class="col s12 m3">
+    <p>{{ formatISOToDateOnly(workout.workoutDate) }}</p>
+  </div>
+  <div class="col s12 m2">
+    <p>{{ workout.duration }}</p>
+  </div>
+  <div class="col s12 m4 right-align">
+    <a class="waves-effect waves-light separate-button blue btn" (click)="onPreview(workout.id)">
+      <i class="material-icons left">visibility</i>Preview
+    </a>
+    <a class="waves-effect waves-light red btn" (click)="onDelete(workout.id)">
+      <i class="material-icons left">delete</i>Delete
+    </a>
+  </div>
+</div>

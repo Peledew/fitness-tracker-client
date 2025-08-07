@@ -1,7 +1,7 @@
 import { UserDto } from './userDto';
 import { WorkoutTypeDto } from './workout-typeDto';
 
-export class WorkoutDto {
+export class ReadWorkoutDto {
   id!: number;
   user!: UserDto;
   userId!: number;

@@ -1,1 +1,64 @@
-<p>workout-preview works!</p>
+<div class="row">
+  <div class="col s12 m12">
+    <h1>Workout Preview</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s12 m12">
+    <form [formGroup]="workoutForm" (ngSubmit)="processData()" class="col s12">
+      <!-- Type -->
+      <div class="input-field">
+        <select formControlName="workoutTypeId">
+          <option value="" disabled selected>Choose workout type</option>
+          <option *ngFor="let type of workoutTypes" [value]="type.id">{{ type.name }}</option>
+        </select>
+        <label>Workout Type</label>
+      </div>
+
+      <!-- Duration -->
+      <div class="input-field">
+        <input formControlName="duration" id="duration" type="text" />
+        <label for="duration" class="active">Duration (hh:mm:ss)</label>
+      </div>
+
+      <!-- Workout Date -->
+      <div class="input-field">
+        <input formControlName="workoutDate" id="workoutDate" type="datetime-local" />
+        <label for="workoutDate" class="active">Workout Date</label>
+      </div>
+
+      <!-- Burned Calories -->
+      <div class="input-field">
+        <input formControlName="burnedCalories" id="burnedCalories" type="number" />
+        <label for="burnedCalories" class="active">Burned Calories</label>
+      </div>
+
+      <!-- Difficulty Level -->
+      <div class="input-field">
+        <input formControlName="difficultyLevel" id="difficultyLevel" type="number" min="1" max="10" />
+        <label for="difficultyLevel" class="active">Difficulty Level (1-10)</label>
+      </div>
+
+      <!-- Post-Workout Fatigue Level -->
+      <div class="input-field">
+        <input formControlName="postWorkoutFatigueLevel" id="postWorkoutFatigueLevel" type="number" min="1" max="10" />
+        <label for="postWorkoutFatigueLevel" class="active">Post-Workout Fatigue Level (1-10)</label>
+      </div>
+
+      <!-- Additional Notes -->
+      <div class="input-field">
+        <textarea formControlName="additionalNotes" id="additionalNotes" class="materialize-textarea"></textarea>
+        <label for="additionalNotes" class="active">Additional Notes</label>
+      </div>
+
+      <!-- Submit Buttons -->
+      <button *ngIf="!isEditMode" type="submit" class="btn waves-effect waves-light green darken-4">
+        <i class="material-icons right">library_add</i>Add
+      </button>
+      <button *ngIf="isEditMode" type="submit" class="btn waves-effect waves-light green lighten-1">
+        <i class="material-icons right">update</i>Update
+      </button>
+    </form>
+  </div>
+</div>

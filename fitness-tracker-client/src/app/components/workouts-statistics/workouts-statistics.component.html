@@ -1,0 +1,52 @@
+<div class="row">
+  <div class="col s12 m12">
+    <h1>Workout statistics</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="input-field col s6 m3">
+    <input id="month" type="number" [(ngModel)]="selectedMonth" min="1" max="12" />
+    <label for="month">Month (1-12)</label>
+  </div>
+
+  <div class="input-field col s6 m3">
+    <input id="year" type="number" [(ngModel)]="selectedYear" min="1900" max="2050" />
+    <label for="year">Year</label>
+  </div>
+
+  <div class="col s12 m3">
+    <button class="btn waves-effect waves-light blue" (click)="loadStatistics()">
+      <i class="material-icons right">search</i>
+      Load Stats
+    </button>
+  </div>
+</div>
+
+<div *ngIf="statistics.length > 0" class="card">
+  <div class="card-content">
+    <table class="highlight responsive-table">
+      <thead>
+        <tr>
+          <th>Week</th>
+          <th>Total Duration</th>
+          <th>Workout Count</th>
+          <th>Avg Difficulty</th>
+          <th>Avg Fatigue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let stat of statistics">
+          <td>{{ stat.weekNumber }}</td>
+          <td>{{ stat.totalDuration }}</td>
+          <td>{{ stat.workoutCount }}</td>
+          <td>{{ stat.averageDifficultyLevel }}</td>
+          <td>{{ stat.averagePostWorkoutFatigueLevel }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="statistics.length === 0" class="center-align grey-text">
+  No statistics found for selected month and year.
+</div>

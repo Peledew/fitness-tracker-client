@@ -7,6 +7,7 @@ import { WorkoutTypesManagementComponent } from './components/management/workout
 import { WorkoutsManagementComponent } from './components/management/workouts-management/workouts-management.component';
 import { WorkoutTypePreviewComponent } from './components/preview/workout-type-preview/workout-type-preview.component';
 import { WorkoutPreviewComponent } from './components/preview/workout-preview/workout-preview.component';
+import { WorkoutsStatisticsComponent } from './components/workouts-statistics/workouts-statistics.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,4 +20,5 @@ export const routes: Routes = [
   { path: 'new/workout-type', component: WorkoutTypePreviewComponent, canActivate: [AuthGuard] },
   { path: 'preview/workout/:id', component: WorkoutPreviewComponent, canActivate: [AuthGuard] },
   { path: 'new/workout', component: WorkoutPreviewComponent, canActivate: [AuthGuard] },
+  { path: 'workoutStatistics', component: WorkoutsStatisticsComponent, canActivate: [AuthGuard] },
 ];

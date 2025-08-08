@@ -25,8 +25,6 @@ export class WorkoutsStatisticsComponent {
   ) {}
 
   loadStatistics(): void {
-    const userId = this.userStore.getUserIdFromStore();
-
     if (!this.selectedMonth || !this.selectedYear) {
       console.warn('Month and year must be selected.');
       return;

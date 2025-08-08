@@ -1,11 +1,11 @@
 <div class="vertical-navbar">
   <ul>
     <li (click)="navigateTo('dashboard')"><a>Dashboard</a></li>
+    <li (click)="navigateTo('workoutsManagment')"><a>Manage workous</a></li>
+    <li (click)="navigateTo('workoutStatistics')"><a>Workout statistics</a></li>
     <ng-container *ngIf="role === 'Admin'">
       <li (click)="navigateTo('workoutTypesManagment')"><a>Manage workout types</a></li>
     </ng-container>
-    <li (click)="navigateTo('workoutsManagment')"><a>Manage workous</a></li>
-    <li (click)="navigateTo('workoutStatistics')"><a>Workout statistics</a></li>
     <li (click)="signOut()"><a>Sign out</a></li>
   </ul>
 </div>

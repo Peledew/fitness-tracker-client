@@ -7,16 +7,13 @@
       </ul>
     </div>
   </nav>
-
   <ul class="sidenav" id="mobile-demo">
     <li><a href="dashboard">Dashboard</a></li>
     <li><a href="workoutsManagment">Manage workous</a></li>
     <li><a href="workoutStatistics">Workout statistics</a></li>
-
     <ng-container *ngIf="role === 'Admin'">
       <li><a href="workoutTypesManagment">Manage workout types</a></li>
     </ng-container>
-
     <li><a (click)="signOut()">Sign out</a></li>
   </ul>
 </header>

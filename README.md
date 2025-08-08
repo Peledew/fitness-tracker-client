@@ -66,6 +66,8 @@ npm install
 ng serve
 ```
 
+---
+
 ## 🙋‍♂️ About Me
 - I’m actively learning and building full-stack apps.
 - If you have feedback or want to collaborate, feel free to reach out!

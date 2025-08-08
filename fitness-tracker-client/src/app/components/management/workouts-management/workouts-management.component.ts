@@ -4,6 +4,7 @@ import { ReadWorkoutDto } from '../../../core/models/readWorkoutDto';
 import { WorkoutService } from '../../../core/services/workout.service';
 import { Router } from '@angular/router';
 import { formatISOToDateOnly } from '../../../core/helpers/dateFormatter';
+import { UserStoreService } from '../../../core/services/user-store.service';
 
 @Component({
   selector: 'app-workouts-management',
@@ -19,6 +20,7 @@ export class WorkoutsManagementComponent implements OnInit {
   constructor(
     private workoutService: WorkoutService,
     private router: Router,
+    private userStore: UserStoreService,
   ) {}
 
   ngOnInit() {
@@ -26,7 +28,7 @@ export class WorkoutsManagementComponent implements OnInit {
   }
 
   loadWorkouts(): void {
-    this.workoutService.getAll().subscribe((res: ReadWorkoutDto[]) => {
+    this.workoutService.getAllByUserId(this.userStore.getUserIdFromStore()).subscribe((res: ReadWorkoutDto[]) => {
       this.workouts = res;
     });
   }
